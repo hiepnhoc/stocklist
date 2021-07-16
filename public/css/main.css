@@ -1,0 +1,70 @@
+.tableagree {
+  width: 100%;
+  height: auto;
+  position: relative; }
+  .tableagree .titlecatalogagree {
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    margin: 10px 0px; }
+    .tableagree .titlecatalogagree .active {
+      color: #bfd630;
+      border-right: 1px solid #bfd630; }
+    .tableagree .titlecatalogagree a {
+      display: inline-block;
+      padding-right: 10px;
+      margin-right: 10px;
+      border-right: 1px solid #424242; }
+    .tableagree .titlecatalogagree a:last-child {
+      border-right: 0px solid #424242; }
+    .tableagree .titlecatalogagree h4 {
+      font-family: "arial";
+      font-size: 13px;
+      line-height: 20px;
+      color: #bfd630;
+      font-weight: 400; }
+  .tableagree .agree1, .tableagree .agree3, .tableagree .agree2 {
+    width: calc(33.333% - 20px);
+    height: auto;
+    position: relative; }
+    .tableagree .agree1 .tableagreetitle, .tableagree .agree3 .tableagreetitle, .tableagree .agree2 .tableagreetitle {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-collapse: collapse; }
+      .tableagree .agree1 .tableagreetitle thead tr th, .tableagree .agree3 .tableagreetitle thead tr th, .tableagree .agree2 .tableagreetitle thead tr th {
+        font-family: "arial";
+        font-size: 13px;
+        line-height: 20px;
+        color: #d8d8d8;
+        font-weight: 400;
+        text-align: center;
+        border: 1px solid #424242; }
+    .tableagree .agree1 .bgtableagreeinfo, .tableagree .agree3 .bgtableagreeinfo, .tableagree .agree2 .bgtableagreeinfo {
+      width: 100%;
+      height: 150px;
+      position: relative;
+      margin-top: -1px; }
+      .tableagree .agree1 .bgtableagreeinfo .tableagreeinfo, .tableagree .agree3 .bgtableagreeinfo .tableagreeinfo, .tableagree .agree2 .bgtableagreeinfo .tableagreeinfo {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-collapse: collapse;
+        /* tbody tr:nth-child(even) {
+        	background: #dedede; 
+        } */ }
+        .tableagree .agree1 .bgtableagreeinfo .tableagreeinfo tbody tr td, .tableagree .agree3 .bgtableagreeinfo .tableagreeinfo tbody tr td, .tableagree .agree2 .bgtableagreeinfo .tableagreeinfo tbody tr td {
+          font-family: "arial";
+          font-size: 13px;
+          line-height: 20px;
+          color: #000;
+          font-weight: 400;
+          text-align: center;
+          border: 1px solid #424242; }
+      .tableagree .agree1 .bgtableagreeinfo .mCSB_outside + .mCSB_scrollTools, .tableagree .agree3 .bgtableagreeinfo .mCSB_outside + .mCSB_scrollTools, .tableagree .agree2 .bgtableagreeinfo .mCSB_outside + .mCSB_scrollTools {
+        right: 0px; }
+  .tableagree .agree2 {
+    margin: 0px 30px; }
+
+/*# sourceMappingURL=main.css.map */

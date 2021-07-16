@@ -1,0 +1,14 @@
+/*.u{color:#00D700;}.f{color:#66CCFF;}.d{color:#EC0000;}.n{color:#FFCC00;}.c{color:#E100E1;}.w,body{color:#D3D3D3;}.gr{color:#404040;}*/
+.b{color: #bfd630;}
+.al{text-align:left;}.tb_a,.ar{text-align:right;}.trh,.ac{text-align:center;}
+
+body {background-color:#000000;font-family:Arial;font-size:12px;font-weight:500;color:white;}
+
+.trh,.bghover{background-color:#303030;}
+.tb_a,.mf{font-family:Arial;font-size:12px;font-weight:500;color:white;}
+.trh,.fB{font-weight:bold;color: white;font-size:12.35px;
+    font-family: 'Arial';
+    line-height: 1.666666667em;}
+.ff {font-family:"Consolas", "Monaco", "Courier New";font-size:12,5px;font-weight:bold;}
+
+.u{color:#03ff04;}.f{color:#00ffff;}.d{color:#FF0000;}.n{color:#FFCC00;}.c{color:#ff00ff;}.w,body{color:#D3D3D3;}.gr{color:#404040;}
