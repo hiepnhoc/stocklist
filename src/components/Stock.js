@@ -206,17 +206,42 @@ function Stock({ item, data = {} }) {
     console.log(item);
   };
 
+  const Cell = memo(({ style, className = "", data }) => {
+    const [preData, setPreData] = useState(null);
+    const [isUpdate, setIsUpdate] = useState(false);
+    useEffect(() => {
+      // console.log(item.CODE, data, preData);
+      if (preData !== data) {
+        if (preData !== null) setIsUpdate(true);
+        setPreData(data);
+        setTimeout(() => {
+          setIsUpdate(false);
+        }, 2000);
+      }
+    }, [data]);
+    return (
+      <td
+        data-source="lightstreamer"
+        data-field="CEILING_PRICE"
+        style={style}
+        className={`${className} ${isUpdate ? "bg--blue text--white" : ""}`}
+      >
+        {data}
+      </td>
+    );
+  });
+
   return (
     <tr
       className={`icon-chart${isCheckIcon ? "" : "show"}`}
       id={item}
       data-source="lightstreamer"
-      onMouseEnter={() => {
-        if (!isShowAdd) setIsShowAdd(true);
-      }}
-      onMouseLeave={() => {
-        if (isShowAdd) setIsShowAdd(false);
-      }}
+      // onMouseEnter={() => {
+      //   if (!isShowAdd) setIsShowAdd(true);
+      // }}
+      // onMouseLeave={() => {
+      //   if (isShowAdd) setIsShowAdd(false);
+      // }}
     >
       <td id="onhoverck">
         <div className="code-name">
@@ -236,79 +261,46 @@ function Stock({ item, data = {} }) {
           )}
         </div>
       </td>
-      <td
-        data-source="lightstreamer"
-        data-field="CEILING_PRICE"
+      <Cell
         style={{
           backgroundColor: "linear-gradient(to right, red 50%, blue 50%)",
           color: activeStyle["CEILING_PRICE"],
         }}
         className="Bgline dln800 c"
-      >
-        {state["CEILING_PRICE"]}
-      </td>
-      <td
-        data-source="lightstreamer"
-        data-field="FLOOR_PRICE"
+        data={state["CEILING_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["FLOOR_PRICE"] }}
         className="Bgline bg-bdl dln800 f"
-      >
-        {state["FLOOR_PRICE"]}
-      </td>
-      <td
-        data-source="lightstreamer"
-        data-field="BASIC_PRICE"
+        data={state["FLOOR_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["BASIC_PRICE"] }}
         className="Bgline bg-bdl dln800 n"
-      >
-        {state["BASIC_PRICE"]}
-      </td>
-      <td
-        className="dln640"
-        data-source="lightstreamer"
+        data={state["BASIC_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["BPRICE3"] }}
-        data-field="BPRICE3"
-      >
-        {state["BPRICE3"]}
-      </td>
-      <td
         className="dln640"
-        data-source="lightstreamer"
+        data={state["BPRICE3"]}
+      />
+      <Cell
         style={{ color: activeStyle["BQTTY3"] }}
-        data-field="BQTTY3"
-      >
-        {state["BQTTY3"]}
-      </td>
-      <td
-        className="dln500"
-        data-source="lightstreamer"
+        className="dln640"
+        data={state["BQTTY3"]}
+      />
+      <Cell
         style={{ color: activeStyle["BPRICE2"] }}
-        data-field="BPRICE2"
-      >
-        {state["BPRICE2"]}
-      </td>
-      <td
         className="dln500"
-        data-source="lightstreamer"
+        data={state["BPRICE2"]}
+      />
+      <Cell
         style={{ color: activeStyle["BQTTY2"] }}
-        data-field="BQTTY2"
-      >
-        {state["BQTTY2"]}
-      </td>
-      <td
-        data-source="lightstreamer"
-        data-field="BPRICE1"
-        style={{ color: activeStyle["BPRICE1"] }}
-      >
-        {state["BPRICE1"]}
-      </td>
-      <td
-        data-source="lightstreamer"
-        data-field="BQTTY1"
-        style={{ color: activeStyle["BQTTY1"] }}
-      >
-        {state["BQTTY1"]}
-      </td>
+        className="dln500"
+        data={state["BQTTY2"]}
+      />
+      <Cell style={{ color: activeStyle["BPRICE1"] }} data={state["BPRICE1"]} />
+      <Cell style={{ color: activeStyle["BQTTY1"] }} data={state["BQTTY1"]} />
       <td className="Bgline showrownameck dlnshowrownameck">
         <span
           onMouseOver={() => getStockName({ item })}
@@ -318,88 +310,47 @@ function Stock({ item, data = {} }) {
           onClick={() => showStockChart({ item })}
           style={{ cursor: "pointer" }}
           title=""
-        ></span>
-      </td>
-      <td
-        className="Bgline"
-        data-source="lightstreamer"
-        data-field="MATCH_PRICE"
-        style={{ color: activeStyle["MATCH_PRICE"] }}
-      >
-        {state["MATCH_PRICE"]}
-      </td>
-      <td
-        className={"Bgline"}
-        data-source="lightstreamer"
-        data-field="MATCH_QTTY"
-        style={{ color: activeStyle["MATCH_PRICE"] }}
-      >
-        {state["MATCH_QTTY"]}
-      </td>
-      <td className="Bgline">
-        <span
-          data-source="lightstreamer"
-          data-field="CHANGE"
-          className="match"
-          style={{ color: activeStyle["CHANGE"] }}
         >
-          {state["CHANGE"]}
+          {item.CODE}
         </span>
-        <span
-          data-source="lightstreamer"
-          data-field="p"
-          className="present"
-          style={{ display: "none" }}
-        ></span>
       </td>
-      <td
-        className=""
-        data-source="lightstreamer"
-        data-field="SPRICE1"
-        style={{ color: activeStyle["SPRICE1"] }}
-      >
-        {state["SPRICE1"]}
-      </td>
-      <td
-        className=""
-        data-source="lightstreamer"
-        data-field="SQTTY1"
-        style={{ color: activeStyle["SQTTY1"] }}
-      >
-        {state["SQTTY1"]}
-      </td>
-      <td
-        className="dln500"
-        data-source="lightstreamer"
-        data-field="SPRICE2"
+      <Cell
+        style={{ color: activeStyle["MATCH_PRICE"] }}
+        className="Bgline"
+        data={state["MATCH_PRICE"]}
+      />
+      <Cell
+        style={{ color: activeStyle["MATCH_PRICE"] }}
+        className={"Bgline"}
+        data={state["MATCH_QTTY"]}
+      />
+      <Cell
+        style={{ color: activeStyle["CHANGE"] }}
+        className="match"
+        data={state["CHANGE"]}
+      />
+      <Cell style={{ color: activeStyle["SPRICE1"] }} data={state["SPRICE1"]} />
+      <Cell style={{ color: activeStyle["SQTTY1"] }} data={state["SQTTY1"]} />
+      <Cell
         style={{ color: activeStyle["SPRICE2"] }}
-      >
-        {state["SPRICE2"]}
-      </td>
-      <td
         className="dln500"
-        data-source="lightstreamer"
-        data-field="SQTTY2"
+        data={state["SPRICE2"]}
+      />
+      <Cell
         style={{ color: activeStyle["SQTTY2"] }}
-      >
-        {state["SQTTY2"]}
-      </td>
-      <td
-        className="dln640"
-        data-source="lightstreamer"
-        data-field="SPRICE3"
+        className="dln500"
+        data={state["SQTTY2"]}
+      />
+      <Cell
         style={{ color: activeStyle["SPRICE3"] }}
-      >
-        {state["SPRICE3"]}
-      </td>
-      <td
         className="dln640"
-        data-source="lightstreamer"
-        data-field="SQTTY3"
+        data={state["SPRICE3"]}
+      />
+      <Cell
         style={{ color: activeStyle["SQTTY3"] }}
-      >
-        {state["SQTTY3"]}
-      </td>
+        className="dln640"
+        data={state["SQTTY3"]}
+      />
       <td className="dln800">
         <span
           className="tbodytotalkl"
@@ -418,54 +369,36 @@ function Stock({ item, data = {} }) {
           {state["TOTAL_TRADED_VALUE"]}
         </span>
       </td>
-      <td
-        className="Bgline dln900"
-        data-source="lightstreamer"
-        data-field="AVERAGE_PRICE"
+      <Cell
         style={{ color: activeStyle["AVERAGE_PRICE"] }}
-      >
-        {state["AVERAGE_PRICE"]}
-      </td>
-      <td
         className="Bgline dln900"
-        data-source="lightstreamer"
-        data-field="HIGHEST_PRICE"
+        data={state["AVERAGE_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["HIGHEST_PRICE"] }}
-      >
-        {state["HIGHEST_PRICE"]}
-      </td>
-      <td
         className="Bgline dln900"
-        data-source="lightstreamer"
-        data-field="LOWEST_PRICE"
+        data={state["HIGHEST_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["LOWEST_PRICE"] }}
-      >
-        {state["LOWEST_PRICE"]}
-      </td>
-      <td
-        className="changerow dln970"
-        data-source="lightstreamer"
-        data-field="BUY_FOREIGN_QTTY"
+        className="Bgline dln900"
+        data={state["LOWEST_PRICE"]}
+      />
+      <Cell
         style={{ color: activeStyle["BUY_FOREIGN_QTTY"] }}
-      >
-        {state["BUY_FOREIGN_QTTY"]}
-      </td>
-      <td
         className="changerow dln970"
-        data-source="lightstreamer"
-        data-field="SELL_FOREIGN_QTTY"
+        data={state["BUY_FOREIGN_QTTY"]}
+      />
+      <Cell
         style={{ color: activeStyle["SELL_FOREIGN_QTTY"] }}
-      >
-        {state["SELL_FOREIGN_QTTY"]}
-      </td>
-      <td
-        className="changerow1"
-        data-source="lightstreamer"
-        data-field="CURRENT_ROOM"
+        className="changerow dln970"
+        data={state["SELL_FOREIGN_QTTY"]}
+      />
+      <Cell
         style={{ color: activeStyle["CURRENT_ROOM"] }}
-      >
-        {state["CURRENT_ROOM"]}
-      </td>
+        className="changerow1"
+        data={state["CURRENT_ROOM"]}
+      />
     </tr>
   );
 }

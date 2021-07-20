@@ -27,10 +27,9 @@ function ListStock() {
       subscription.setRequestedSnapshot("yes");
       subscription.addListener({
         onItemUpdate: (obj) => {
-          console.log("obj", obj);
+          // console.log("obj", obj);
           const newStocklist = { ...stockListData };
           setStockListData({ ...newStocklist, [item.CODE]: obj });
-          // onItemUpdate(obj);
         },
       });
       client.subscribe(subscription);
