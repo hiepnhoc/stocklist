@@ -1,9 +1,40 @@
-.Colortranfer{
-    width: 100px;
+.Colortranfer {
+  width: 100px;
   height: 100px;
   animation-name: example;
   animation-duration: 1s;
 }
 @keyframes example {
-    100%   {background-color:rgb(0, 102, 136);}
+  100% {
+    background-color: rgb(0, 102, 136);
   }
+}
+
+.code-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plus-icon {
+  cursor: pointer;
+}
+
+/* color */
+.text--yellow {
+  color: rgb(253, 255, 18);
+}
+.text--pink {
+  color: rgb(253, 2, 253);
+}
+.text--blue {
+  color: rgb(82, 211, 249);
+}
+.text--green {
+  color: rgb(11, 223, 57);
+}
+.text--red {
+  color: rgb(255, 0, 23);
+}
+.text--gray {
+  color: rgb(214, 214, 214);
+}
