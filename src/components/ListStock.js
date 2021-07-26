@@ -29,7 +29,10 @@ function ListStock() {
         onItemUpdate: (obj) => {
           // console.log("obj", obj);
           const newStocklist = { ...stockListData };
-          setStockListData({ ...newStocklist, [item.CODE]: obj });
+          setStockListData({
+            ...newStocklist,
+            [item.CODE]: obj,
+          });
         },
       });
       client.subscribe(subscription);
