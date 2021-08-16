@@ -213,7 +213,7 @@ function Stock({ item, data = {} }) {
     console.log(item);
   };
 
-  const Cell = ({ style, className = "", data, field }) => {
+  const Cell = ({ style, className = "", data, field, isChild = false }) => {
     const [isUpdate, setIsUpdate] = useState(false);
     useEffect(() => {
       if (preState[field] && preState[field] !== state[field]) {
@@ -225,10 +225,19 @@ function Stock({ item, data = {} }) {
         }, 2000);
       }
     });
-    return (
+    return isChild ? (
+      <>
+        <span
+          className={`${className} ${isUpdate ? "bg--blue" : ""}`}
+          data-source="lightstreamer"
+          style={style}
+        >
+          {data}
+        </span>
+      </>
+    ) : (
       <td
         data-source="lightstreamer"
-        data-field="CEILING_PRICE"
         style={style}
         className={`${className} ${isUpdate ? "bg--blue" : ""}`}
       >
@@ -388,22 +397,18 @@ function Stock({ item, data = {} }) {
         field="SQTTY3"
       />
       <td className="dln800">
-        <span
+        <Cell
+          isChild={true}
           className="tbodytotalkl"
-          data-source="lightstreamer"
-          data-field="TOTAL_TRADED_QTTY"
+          data={state["TOTAL_TRADED_QTTY"]}
           style={{ color: activeStyle["TOTAL_TRADED_QTTY"] }}
-        >
-          {state["TOTAL_TRADED_QTTY"]}
-        </span>
-        <span
-          className="tbodytotalgt"
-          data-source="lightstreamer"
-          data-field="TOTAL_TRADED_VALUE"
+        />
+        <Cell
+          isChild={true}
+          className="tbodytotalkl"
+          data={state["TOTAL_TRADED_VALUE"]}
           style={{ color: activeStyle["TOTAL_TRADED_VALUE"] }}
-        >
-          {state["TOTAL_TRADED_VALUE"]}
-        </span>
+        />
       </td>
       <Cell
         style={{ color: activeStyle["AVERAGE_PRICE"] }}
