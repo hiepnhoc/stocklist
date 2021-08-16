@@ -213,12 +213,12 @@ function Stock({ item, data = {} }) {
     console.log(item);
   };
 
-  const Cell = memo(({ style, className = "", data, key }) => {
+  const Cell = ({ style, className = "", data, field }) => {
     const [isUpdate, setIsUpdate] = useState(false);
     useEffect(() => {
-      if (preState[key] && preState[key] !== state[key]) {
-        console.log("udpate field", key);
-        setpreState({ ...preState, [key]: state[key] });
+      if (preState[field] && preState[field] !== state[field]) {
+        console.log("udpate field", field);
+        setpreState({ ...preState, [field]: state[field] });
         setIsUpdate(true);
         setTimeout(() => {
           setIsUpdate(false);
@@ -235,7 +235,7 @@ function Stock({ item, data = {} }) {
         {data}
       </td>
     );
-  });
+  };
 
   return (
     <tr
@@ -274,52 +274,53 @@ function Stock({ item, data = {} }) {
         }}
         className="Bgline dln800 c"
         data={state["CEILING_PRICE"]}
-        key="CEILING_PRICE"
+        field="CEILING_PRICE"
       />
       <Cell
         style={{ color: activeStyle["FLOOR_PRICE"] }}
         className="Bgline bg-bdl dln800 f"
         data={state["FLOOR_PRICE"]}
+        field="FLOOR_PRICE"
       />
       <Cell
         style={{ color: activeStyle["BASIC_PRICE"] }}
         className="Bgline bg-bdl dln800 n"
         data={state["BASIC_PRICE"]}
-        key="BASIC_PRICE"
+        field="BASIC_PRICE"
       />
       <Cell
         style={{ color: activeStyle["BPRICE3"] }}
         className="dln640"
         data={state["BPRICE3"]}
-        key="BPRICE3"
+        field="BPRICE3"
       />
       <Cell
         style={{ color: activeStyle["BQTTY3"] }}
         className="dln640"
         data={state["BQTTY3"]}
-        key="BQTTY3"
+        field="BQTTY3"
       />
       <Cell
         style={{ color: activeStyle["BPRICE2"] }}
         className="dln500"
         data={state["BPRICE2"]}
-        key="BPRICE2"
+        field="BPRICE2"
       />
       <Cell
         style={{ color: activeStyle["BQTTY2"] }}
         className="dln500"
         data={state["BQTTY2"]}
-        key="BQTTY2"
+        field="BQTTY2"
       />
       <Cell
         style={{ color: activeStyle["BPRICE1"] }}
         data={state["BPRICE1"]}
-        key="BPRICE1"
+        field="BPRICE1"
       />
       <Cell
         style={{ color: activeStyle["BQTTY1"] }}
         data={state["BQTTY1"]}
-        key="BQTTY1"
+        field="BQTTY1"
       />
       <td className="Bgline showrownameck dlnshowrownameck">
         <span
@@ -338,53 +339,53 @@ function Stock({ item, data = {} }) {
         style={{ color: activeStyle["MATCH_PRICE"] }}
         className="Bgline"
         data={state["MATCH_PRICE"]}
-        key="MATCH_PRICE"
+        field="MATCH_PRICE"
       />
       <Cell
         style={{ color: activeStyle["MATCH_PRICE"] }}
         className={"Bgline"}
         data={state["MATCH_QTTY"]}
-        key="MATCH_QTTY"
+        field="MATCH_QTTY"
       />
       <Cell
         style={{ color: activeStyle["CHANGE"] }}
         className="match"
         data={state["CHANGE"]}
-        key="CHANGE"
+        field="CHANGE"
       />
       <Cell
         style={{ color: activeStyle["SPRICE1"] }}
         data={state["SPRICE1"]}
-        key="SPRICE1"
+        field="SPRICE1"
       />
       <Cell
         style={{ color: activeStyle["SQTTY1"] }}
         data={state["SQTTY1"]}
-        key="SQTTY1"
+        field="SQTTY1"
       />
       <Cell
         style={{ color: activeStyle["SPRICE2"] }}
         className="dln500"
         data={state["SPRICE2"]}
-        key="SPRICE2"
+        field="SPRICE2"
       />
       <Cell
         style={{ color: activeStyle["SQTTY2"] }}
         className="dln500"
         data={state["SQTTY2"]}
-        key="SQTTY2"
+        field="SQTTY2"
       />
       <Cell
         style={{ color: activeStyle["SPRICE3"] }}
         className="dln640"
         data={state["SPRICE3"]}
-        key="SPRICE3"
+        field="SPRICE3"
       />
       <Cell
         style={{ color: activeStyle["SQTTY3"] }}
         className="dln640"
         data={state["SQTTY3"]}
-        key="SQTTY3"
+        field="SQTTY3"
       />
       <td className="dln800">
         <span
@@ -408,37 +409,37 @@ function Stock({ item, data = {} }) {
         style={{ color: activeStyle["AVERAGE_PRICE"] }}
         className="Bgline dln900"
         data={state["AVERAGE_PRICE"]}
-        key="AVERAGE_PRICE"
+        field="AVERAGE_PRICE"
       />
       <Cell
         style={{ color: activeStyle["HIGHEST_PRICE"] }}
         className="Bgline dln900"
         data={state["HIGHEST_PRICE"]}
-        key="HIGHEST_PRICE"
+        field="HIGHEST_PRICE"
       />
       <Cell
         style={{ color: activeStyle["LOWEST_PRICE"] }}
         className="Bgline dln900"
         data={state["LOWEST_PRICE"]}
-        key="LOWEST_PRICE"
+        field="LOWEST_PRICE"
       />
       <Cell
         style={{ color: activeStyle["BUY_FOREIGN_QTTY"] }}
         className="changerow dln970"
         data={state["BUY_FOREIGN_QTTY"]}
-        key="BUY_FOREIGN_QTTY"
+        field="BUY_FOREIGN_QTTY"
       />
       <Cell
         style={{ color: activeStyle["SELL_FOREIGN_QTTY"] }}
         className="changerow dln970"
         data={state["SELL_FOREIGN_QTTY"]}
-        key="SELL_FOREIGN_QTTY"
+        field="SELL_FOREIGN_QTTY"
       />
       <Cell
         style={{ color: activeStyle["CURRENT_ROOM"] }}
         className="changerow1"
         data={state["CURRENT_ROOM"]}
-        key="CURRENT_ROOM"
+        field="CURRENT_ROOM"
       />
     </tr>
   );
