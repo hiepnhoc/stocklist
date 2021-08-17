@@ -1756,7 +1756,7 @@
 }
 
 .changegt .dlntotalgt ,.changegt .tbodytotalgt {
-	display: block !important;
+	display: none !important;
 } 
 
 .priceboard-info tbody tr td .tbodytotalkl ,

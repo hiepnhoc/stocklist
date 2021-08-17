@@ -7,7 +7,8 @@ function Stock({ item, data = {} }) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState([]);
-  const [preState, setpreState] = useState([]);
+  const [preState, setpreState] = useState({});
+  const [currentState, setCurrentState] = useState({});
   const [activeStyle, setActiveStyle] = useState([]);
 
   const [isShowAdd, setIsShowAdd] = useState(false);
@@ -21,12 +22,12 @@ function Stock({ item, data = {} }) {
   const onItemUpdate = (obj) => {
     var nextStyle = {};
     var nextState = {};
-    var currentState = null;
+    //var currentState = null;
+    console.log("item: " + JSON.stringify(item));
+    console.log("obj: " + JSON.stringify(obj));
     obj.forEachField(function (name, pos, val) {
       nextState[name] = val;
-      if (!preState[name]) {
-        currentState[name] = val;
-      }
+    
     });
     if (nextState != null) {
       if (nextState["BPRICE3"] === nextState["BASIC_PRICE"]) {
@@ -197,12 +198,12 @@ function Stock({ item, data = {} }) {
         nextStyle["CODE"] = "rgb(214, 214, 214)";
       }
     }
-
     setState(nextState);
     setActiveStyle(nextStyle);
-    if (currentState) {
-      setpreState(currentState);
-    }
+    setpreState(item);
+
+    console.log("item: " + JSON.stringify(item));
+    console.log("nextState: " + JSON.stringify(nextState));
     dispatch(UpdateListStock(nextState));
   };
 
@@ -212,25 +213,25 @@ function Stock({ item, data = {} }) {
   const showStockChart = (item) => {
     console.log(item);
   };
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const Cell = ({ style, className = "", data, field, isChild = false }) => {
-    const [isUpdate, setIsUpdate] = useState(false);
+    
     useEffect(() => {
       if (preState[field] && preState[field] !== state[field]) {
-        console.log("udpate field", field);
-        setpreState({ ...preState, [field]: state[field] });
         setIsUpdate(true);
         setTimeout(() => {
           setIsUpdate(false);
         }, 2000);
       }
-    });
+    },[]);
     return isChild ? (
       <>
         <span
           className={`${className} ${isUpdate ? "bg--blue" : ""}`}
           data-source="lightstreamer"
           style={style}
+          data-field={field}
         >
           {data}
         </span>
@@ -240,6 +241,7 @@ function Stock({ item, data = {} }) {
         data-source="lightstreamer"
         style={style}
         className={`${className} ${isUpdate ? "bg--blue" : ""}`}
+        data-field={field}
       >
         {data}
       </td>
@@ -405,7 +407,7 @@ function Stock({ item, data = {} }) {
         />
         <Cell
           isChild={true}
-          className="tbodytotalkl"
+          className="tbodytotalgt"
           data={state["TOTAL_TRADED_VALUE"]}
           style={{ color: activeStyle["TOTAL_TRADED_VALUE"] }}
         />

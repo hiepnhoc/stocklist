@@ -33,6 +33,9 @@ function ListStock() {
             ...newStocklist,
             [item.CODE]: obj,
           });
+
+          // console.log("item:" + JSON.stringify(item));
+          // console.log("code:" + JSON.stringify(stockListData[item.CODE]));
         },
       });
       client.subscribe(subscription);
@@ -110,6 +113,7 @@ function ListStock() {
 
         <tbody id="ScrollHiglhigt">
           {LIST_STOCK.map((item, index) => (
+            
             <Stock key={index} item={item} data={stockListData[item.CODE]} />
           ))}
         </tbody>

@@ -37,7 +37,7 @@ const todoSlice = createSlice({
       );
       if (index >= 0) {
         //update
-        state.LIST_STOCK[index].AVERAGE_PRICE = action.payload.CODE;
+        state.LIST_STOCK[index].AVERAGE_PRICE = action.payload.AVERAGE_PRICE;
         state.LIST_STOCK[index].BASE_DEVIATION = action.payload.BASE_DEVIATION;
         state.LIST_STOCK[index].BASE_PRICE_W = action.payload.BASE_PRICE_W;
         state.LIST_STOCK[index].BASIC_PRICE = action.payload.BASIC_PRICE;
