@@ -23,8 +23,8 @@ function Stock({ item, data = {} }) {
     var nextStyle = {};
     var nextState = {};
     //var currentState = null;
-    console.log("item: " + JSON.stringify(item));
-    console.log("obj: " + JSON.stringify(obj));
+    //console.log("item: " + JSON.stringify(item));
+    //console.log("obj: " + JSON.stringify(obj));
     obj.forEachField(function (name, pos, val) {
       nextState[name] = val;
     
@@ -202,8 +202,8 @@ function Stock({ item, data = {} }) {
     setActiveStyle(nextStyle);
     setpreState(item);
 
-    console.log("item: " + JSON.stringify(item));
-    console.log("nextState: " + JSON.stringify(nextState));
+    //console.log("item: " + JSON.stringify(item));
+    //console.log("nextState: " + JSON.stringify(nextState));
     dispatch(UpdateListStock(nextState));
   };
 
@@ -213,12 +213,13 @@ function Stock({ item, data = {} }) {
   const showStockChart = (item) => {
     console.log(item);
   };
-  const [isUpdate, setIsUpdate] = useState(false);
+  
 
   const Cell = ({ style, className = "", data, field, isChild = false }) => {
-    
+    const [isUpdate, setIsUpdate] = useState(false);
     useEffect(() => {
-      if (preState[field] && preState[field] !== state[field]) {
+      if (preState[field] && preState[field]!=null && preState[field]!=="" && preState[field] !== state[field]) {
+        console.log("update:" + preState["CODE"] + "-" +  field + "-" + preState[field] + ":" + state[field]);
         setIsUpdate(true);
         setTimeout(() => {
           setIsUpdate(false);
